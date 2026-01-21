@@ -2,56 +2,61 @@
    Design Tokens / 全站設定（統一一個 :root）
 ========================= */
 :root {
+  /* Header height tokens（用來讓 Hero / anchor 避開 sticky header） */
+  --header-h: 88px; /* 桌機 header 實高：header-inner=88px */
   --gold: #dfa251;
   --jf-bg: #c99a58;
-
   --ink: #2f2f2f;
   --muted: #6b6b6b;
-
   --bg: #f8f8f8;
   --white: #ffffff;
-
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
   --radius: 0px;
-
   --font-zh:
     "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Segoe UI", system-ui,
     sans-serif;
   --font-en: "Montserrat", "Segoe UI", Arial, system-ui, sans-serif;
-
-  /* Typography */
-  --p-size: 17px;
+  /* =========================
+     Typography (RWD)
+  ========================= */
+  --p-size: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem); /* 16px ~ 17px */
   --p-lh: 1.75;
   --p-fw: 300;
   --p-ls: 1.4px;
-
-  --h2-size: 40px;
+  --h2-size: clamp(1.65rem, 1.18rem + 1.4vw, 2.3rem);
   --h2-lh: 1.15;
-  --h2-fw: 800;
+  --h2-fw: 700;
   --h2-ls: 0.02em;
-
-  /* H3：中文內小標（例如「CI設計介紹」） */
-  --h3-size: 25px;
+  --h3-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5625rem); /* 20px ~ 25px */
   --h3-lh: 1.4;
-  --h3-fw: 700;
+  --h3-fw: 500;
   --h3-ls: 0.12em;
-
-  /* H4：英文副標（VISUAL IDENTITY / EVENT / MAP...） */
-  --h4-size: 14px;
+  --h4-size: 0.875rem; /* 14px */
   --h4-lh: 1;
-  --h4-fw: 700;
+  --h4-fw: 400;
   --h4-ls: 0.28em;
-
-  /* Section spacing (global) */
-  --sec-y: 84px; /* desktop 預設上下間距 */
-  --sec-y-lg: 96px; /* 需要更鬆的區塊（如 Hero/Video 可用） */
-  --sec-y-sm: 64px; /* 較緊的區塊 */
-
-  --sec-y-top: 84px;
-  --sec-y-bottom: 150px; /* 下方刻意多留 */
+  /* =========================
+     Section spacing (RWD)
+  ========================= */
+  --sec-y: clamp(56px, 6vw, 84px);
+  --sec-y-lg: clamp(72px, 7vw, 96px);
+  --sec-y-sm: clamp(44px, 5vw, 64px);
+  --sec-y-top: clamp(56px, 6vw, 84px);
+  --sec-y-bottom: clamp(96px, 10vw, 150px);
+  --para-gap: clamp(12px, 1.2vw, 16px);
 }
-
+@media (max-width: 991.98px) {
+  :root {
+    --header-h: 72px; /* 手機 header 高度（與 .header-inner mobile 高度一致） */
+  }
+}
+@media (min-width: 1600px) {
+  :root {
+    --p-size: 18px;
+    --p-lh: 1.8;
+  }
+}
 /* =========================
    Base
 ========================= */
@@ -59,14 +64,13 @@ html,
 body {
   height: 100%;
 }
-
 body {
   margin: 0;
   font-family: var(--font-zh);
   color: var(--ink);
   background: var(--bg);
 }
-
+/* section spacing */
 .section {
   padding: var(--sec-y) 0;
 }
@@ -76,18 +80,19 @@ body {
 .section--sm {
   padding: var(--sec-y-sm) 0;
 }
-
 /* 全站段落 */
 p {
-  margin: 0 0 16px;
+  margin: 0;
   font-size: var(--p-size);
   line-height: var(--p-lh);
   font-weight: var(--p-fw);
   letter-spacing: var(--p-ls);
   color: var(--ink);
 }
-
-/* H2：中文主標 */
+p + p {
+  margin-top: var(--para-gap);
+}
+/* H2 */
 h2 {
   margin: 0;
   font-size: var(--h2-size);
@@ -96,18 +101,16 @@ h2 {
   letter-spacing: var(--h2-ls);
   color: var(--ink);
 }
-
-/* H3：中文內小標 */
+/* H3 */
 h3 {
-  margin: 22px 0 12px;
+  margin: var(--para-gap) 0 calc(var(--para-gap) * 0.75);
   font-size: var(--h3-size);
   line-height: var(--h3-lh);
   font-weight: var(--h3-fw);
   letter-spacing: var(--h3-ls);
   color: var(--ink);
 }
-
-/* H4：英文副標（用 Montserrat） */
+/* H4 */
 h4 {
   margin: 10px 0 0;
   font-family: var(--font-en);
@@ -117,21 +120,18 @@ h4 {
   letter-spacing: var(--h4-ls);
   color: var(--gold);
 }
-
 /* helper */
 .text-justify {
   text-align: justify;
 }
-
 .clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 /* =========================
-   Section Head（共用：只管排版，不管字級）
+   Section Head（共用）
 ========================= */
 .section-head {
   margin: 0 0 22px;
@@ -142,8 +142,7 @@ h4 {
 .section-head--left {
   text-align: left;
 }
-
-/* 深色底：字色統一 */
+/* 深色底 */
 .section--dark h2,
 .section--dark h3,
 .section--dark p,
@@ -152,15 +151,12 @@ h4 {
 .section-head--on-dark p {
   color: #fff;
 }
-
-/* 深色底的英文副標仍用金色或偏白（依你稿子選一個） */
 .section--dark h4,
 .section-head--on-dark h4 {
   color: rgba(255, 255, 255, 0.9);
 }
-
 /* =========================
-   Buttons / CTA（共用：金博選品 MORE、交通指引 MORE）
+   Buttons / CTA（共用）
 ========================= */
 .btn-cta {
   display: inline-flex;
@@ -174,37 +170,43 @@ h4 {
   background: var(--gold);
   color: #fff;
   text-decoration: none;
-
   font-family: var(--font-en);
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.14em;
-
   transition:
     filter 0.2s ease,
     transform 0.2s ease;
 }
-
 .btn-cta:hover {
   filter: brightness(0.96);
 }
-
 .btn-cta:active {
   transform: translateY(1px);
 }
-
-/* 交通指引那顆如果要滿版，就保留這個 */
+/* 交通指引 MORE（滿版） */
 .traffic-more {
-  width: 100%;
-  height: 56px; /* 交通指引設計稿較高 */
-  min-width: 0;
+  margin-top: 2rem;
+
+  height: 44px;
+
+  min-width: 240px;
+  width: auto;
 }
-@media (max-width: 991.98px) {
-  .traffic-more {
-    height: 60px;
+
+/* =========================
+   Layout Width Strategy
+========================= */
+@media (min-width: 1200px) and (max-width: 1599.98px) {
+  .container {
+    max-width: 1120px;
   }
 }
-
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1320px;
+  }
+}
 /* =========================
    Header
 ========================= */
@@ -212,14 +214,12 @@ h4 {
   background: #fff;
   border-bottom: 1px solid #eee;
 }
-
 .header-inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 88px;
 }
-
 .header-side {
   display: flex;
   align-items: center;
@@ -227,13 +227,11 @@ h4 {
 .header-side-right {
   justify-content: flex-end;
 }
-
 .header-logo img {
   height: 44px;
   width: auto;
   display: block;
 }
-
 /* Burger */
 .burger {
   width: 44px;
@@ -248,7 +246,6 @@ h4 {
   cursor: pointer;
   z-index: 1001;
 }
-
 .burger .line {
   display: block;
   width: 26px;
@@ -264,7 +261,6 @@ h4 {
 .burger .line-1 {
   background: var(--gold);
 }
-
 .burger.is-open .line-1 {
   background: var(--ink);
   transform: translateY(8px) rotate(45deg);
@@ -275,7 +271,6 @@ h4 {
 .burger.is-open .line-3 {
   transform: translateY(-8px) rotate(-45deg);
 }
-
 /* Drawer */
 .drawer {
   position: fixed;
@@ -293,7 +288,6 @@ h4 {
 .drawer.is-open {
   transform: translateX(0);
 }
-
 .drawer-inner {
   padding: 96px 18px 18px;
   display: flex;
@@ -309,22 +303,27 @@ h4 {
 .drawer-link:hover {
   background: rgba(0, 0, 0, 0.05);
 }
-
+/* Header Mobile */
+@media (max-width: 991.98px) {
+  .header-inner {
+    height: 72px;
+  }
+  .header-logo img {
+    height: 30px;
+  }
+}
 /* =========================
-   Hero
+   Hero（100vh，金字/背景滿版，避開 header）
 ========================= */
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   background: #fff;
 }
-
 .hero-min {
   min-height: 100vh;
-  padding: 64px 0;
 }
-
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -334,62 +333,53 @@ h4 {
   background-position: top left;
   background-size: 1440px auto;
 }
-
 .hero-bg-base {
   z-index: 0;
 }
-
 .hero-bg-mask {
   z-index: 1;
   -webkit-mask-image: url("../assets/bg-mask.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: cover;
-
   mask-image: url("../assets/bg-mask.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: cover;
-
   mix-blend-mode: multiply;
   opacity: 0.45;
 }
-
 @supports not ((mask-image: url("")) or (-webkit-mask-image: url(""))) {
   .hero-bg-mask {
     display: none;
   }
 }
-
+/* 金字：一屏扣掉 header，不被 nav 蓋住 */
 .hero-goldword {
   position: absolute;
-  top: -3vh;
+  top: 0;
   right: 0;
-  height: 108vh;
+  height: 100vh;
   width: auto;
   max-width: 56vw;
   object-fit: contain;
   pointer-events: none;
   z-index: 2;
-
   opacity: 0;
   transform: translateX(48px);
   animation: goldIn 0.9s ease forwards;
   animation-delay: 0.25s;
 }
-
 @keyframes goldIn {
   to {
     opacity: 0.92;
     transform: translateX(0);
   }
 }
-
 .hero .container {
   position: relative;
   z-index: 3;
 }
-
 .hero-kicker {
   font-weight: 700;
   line-height: 1.1;
@@ -398,7 +388,6 @@ h4 {
   opacity: 0.9;
   font-family: var(--font-en);
 }
-
 .hero-title {
   font-weight: 900;
   line-height: 1.08;
@@ -406,7 +395,6 @@ h4 {
   letter-spacing: 0.15em;
   margin: 0;
 }
-
 .hero-tagline {
   font-weight: 400;
   line-height: 1.2;
@@ -414,7 +402,33 @@ h4 {
   letter-spacing: clamp(0.35em, 0.9vw, 1em);
   opacity: 0.85;
 }
+/* Hero Mobile：金字置中放大、貼 header 下方 */
+@media (max-width: 991.98px) {
+  .hero-bg {
+    background-size: 1000px auto;
+  }
+  .hero-goldword {
+    position: absolute;
+    top: 0; /* 直接貼齊 viewport */
+    left: 10%;
+    transform: translateX(-50%);
 
+    height: 100vh; /* 關鍵：完整一屏 */
+    width: auto;
+    max-width: 100vw;
+
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 2;
+
+    opacity: 0;
+    animation: goldIn 0.9s ease forwards;
+    animation-delay: 0.25s;
+  }
+  .hero .container {
+    padding-top: 0;
+  }
+}
 /* =========================
    Reveal
 ========================= */
@@ -430,7 +444,6 @@ h4 {
   opacity: 1;
   transform: translateY(0);
 }
-
 /* =========================
    Process
 ========================= */
@@ -441,7 +454,6 @@ h4 {
   text-align: center;
   overflow: hidden;
 }
-
 .process::before {
   content: "";
   position: absolute;
@@ -453,254 +465,264 @@ h4 {
   z-index: 0;
   pointer-events: none;
 }
-
 .process > .container {
   position: relative;
   z-index: 1;
 }
-
 .process-text {
   max-width: 800px;
+  line-height: 2;
+  font-weight: 400;
   margin-left: auto;
   margin-right: auto;
   color: #f8f8f8;
 }
-
+.process-text span {
+  border-bottom: 2px solid #fff;
+}
+.process-text + .process-text {
+  margin-top: clamp(1.25rem, 0.8rem + 1vw, 2rem);
+}
+@media (max-width: 991.98px) {
+  .process::before {
+    background-size: 500px auto;
+  }
+}
 /* =========================
-   CI
-   - 移除 ci-eyebrow / ci h2 覆寫
-   - 讓 CI 遵循全站 H2/H4/H3/P
+   CI Section
 ========================= */
 .ci {
   position: relative;
   background: #f8f8f8;
   overflow: hidden;
-  padding: clamp(48px, 6vw, 96px) 0;
+  padding: clamp(68px, 6vw, 100px) 0;
 }
-
 .ci::before {
   content: "";
   position: absolute;
   inset: 0;
   background: url("/assets/ci/ci-decor-gray.svg") no-repeat;
-  background-position: calc(100% + 25vw) top;
-  background-size: clamp(600px, 60vw, 1100px) auto;
+  background-position: right top;
+  background-size: clamp(620px, 58vw, 1100px) auto;
   opacity: 0.1;
+  right: -15em;
   pointer-events: none;
   z-index: 0;
 }
-
 .ci .container {
   position: relative;
   z-index: 1;
 }
-
-.ci-orbits {
-  position: relative;
-  width: min(560px, 100%);
-  aspect-ratio: 560 / 640;
+.ci-inner {
+  max-width: 1180px;
   margin-inline: auto;
 }
-
+/* CI spacing（只調距離，不動字級 token） */
+.ci-content h2 {
+  margin-top: 50px;
+}
+.ci-content h4 {
+  margin-top: 12px;
+}
+.ci-content h3 {
+  margin-top: 80px;
+}
+.ci-content p + p {
+  margin-top: 22px;
+}
+@media (max-width: 991.98px) {
+  .ci-content p + p {
+    margin-top: 16px;
+  }
+  .ci-content h3 {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+/* Left Visual */
+.ci-orbits {
+  position: relative;
+  width: min(680px, 100%);
+  aspect-ratio: 680 / 760;
+  margin-inline: auto;
+}
 .ci-mark {
-  width: clamp(280px, 28vw, 350px);
+  width: clamp(180px, 28vw, 300px);
   height: auto;
   display: block;
   position: relative;
   z-index: 2;
 }
-
 .ci-badges {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
 }
-
 .ci-badge {
   position: absolute;
-  width: clamp(150px, 16vw, 204px);
+  width: clamp(140px, 13vw, 185px);
   height: auto;
-  transform-origin: center;
+  transform: translate(-50%, -50%);
 }
-
 .ci-badge.b1 {
-  top: 2%;
-  left: 58%;
+  left: 80%;
+  top: 12%;
 }
 .ci-badge.b2 {
-  top: 36%;
-  left: 62%;
+  left: 85%;
+  top: 55%;
 }
 .ci-badge.b3 {
-  top: 77%;
-  left: 6%;
-  opacity: 0.75;
+  left: 10%;
+  top: 100%;
 }
 .ci-badge.b4 {
-  top: 70%;
-  left: 46%;
-  opacity: 0.75;
+  left: 64%;
+  top: 96%;
 }
-
-@media (max-width: 991.98px) {
-  .ci {
-    padding: 72px 0;
+@media (max-width: 1599.98px) and (min-width: 992px) {
+  .ci-orbits {
+    width: min(520px, 100%);
   }
+  .ci-mark {
+    width: 62%;
+    max-width: 280px;
+  }
+  .ci-badge {
+    width: 34%;
+    max-width: 155px;
+  }
+  .ci-badge.b1 {
+    left: 83%;
+    top: 13%;
+  }
+  .ci-badge.b2 {
+    left: 88%;
+    top: 56%;
+  }
+  .ci-badge.b3 {
+    left: 67%;
+    top: 98%;
+  }
+  .ci-badge.b4 {
+    left: 16%;
+    top: 99%;
+  }
+}
+@media (max-width: 991.98px) {
   .ci-orbits {
     aspect-ratio: auto;
   }
+  /* 你的需求：金字縮小、四顆 badge 放大 */
   .ci-mark {
+    width: min(260px, 62vw);
     margin-inline: auto;
   }
-
   .ci-badges {
     position: static;
-    margin-top: 16px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 20px;
     justify-items: center;
   }
-
   .ci-badge {
     position: static;
-    width: min(190px, 42vw);
-    opacity: 0.95;
+    width: min(210px, 40vw);
+    transform: none;
+    max-width: none;
+  }
+  .ci-inner .section-head {
+    margin: 0 0 60px;
   }
 }
 
 /* =========================
    Section Decor (Products / Video)
-   - 依照目前 HTML 命名
 ========================= */
-
-/* 兩個 section 都建立定位與層級隔離 */
 .products,
 .video {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
-
-/* decor：鋪滿整個 section（不吃到 container padding） */
 .section-decor {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
-
-/* 內容層：永遠在 decor 上方 */
 .products > .container,
 .video > .container {
   position: relative;
   z-index: 1;
 }
-
-/* ===== Decor 文字共用樣式 ===== */
 .decor-word {
   position: absolute;
   white-space: nowrap;
   user-select: none;
   will-change: transform;
-  font-size: clamp(80px, 10vw, 180px);
   font-family: var(--font-en);
   font-weight: 900;
   letter-spacing: 0.08em;
   line-height: 1;
-
-  /* 顏色淡淡的底字（可再調） */
   color: rgba(47, 47, 47, 0.06);
-
-  /* 字要更大 -> 調這裡（你問「要大一點」就是改這行） */
   font-size: clamp(80px, 10vw, 180px);
 }
-
-/* =========================
-   Products：單行（目前 HTML 就一行）
-========================= */
 .decor-word--products {
-  /* 你問「位置上來一點」：改 top（越小越往上，甚至可負值） */
   top: -15%;
   right: -18%;
   opacity: 0.6;
 }
-
-/* =========================
-   Video：多行（v1~v4）
-   需求：裝飾文字高度「高過影片」，但不要把整個 section 往下撐很長
-   作法：讓 section-decor--video 自己「往上溢出」
-========================= */
 .section-decor--video {
   position: absolute;
-  /* 往上多給一段高度（紅框效果），下方只多一點點即可 */
   inset: -22% 0 -6% 0;
-
   pointer-events: none;
   z-index: 0;
 }
-
-/* Video 每行定位（可自行微調 top/left/right） */
 .decor-word--video.decor-word--v1 {
   top: 15%;
   left: -14%;
   opacity: 0.55;
 }
-
 .decor-word--video.decor-word--v2 {
   top: 35%;
   right: -18%;
   opacity: 0.55;
 }
-
 .decor-word--video.decor-word--v3 {
   top: 55%;
   left: -20%;
   opacity: 0.55;
 }
-
-/* v4 不要跟 v3 疊同一個座標 */
 .decor-word--video.decor-word--v4 {
   top: 75%;
   right: -16%;
   opacity: 0.55;
 }
-
-/* =========================
-   動畫：無限循環，不會「跑完消失」
-   （目前是左右小幅漂浮；若你要真正「輪播跑馬燈」我再給你 marquee 版）
-========================= */
 @media (prefers-reduced-motion: no-preference) {
   .decor-word {
     animation: decorFloatX 14s ease-in-out infinite alternate;
   }
-
-  /* Products：稍慢 */
   .decor-word--products {
     animation-duration: 16s;
   }
-
-  /* Video：每行不同速度/方向，形成層次 */
   .decor-word--video.decor-word--v1 {
     animation-duration: 18s;
   }
-
   .decor-word--video.decor-word--v2 {
     animation-duration: 22s;
     animation-direction: alternate-reverse;
   }
-
   .decor-word--video.decor-word--v3 {
     animation-duration: 26s;
   }
-
   .decor-word--video.decor-word--v4 {
     animation-duration: 20s;
     animation-direction: alternate-reverse;
   }
 }
-
 @keyframes decorFloatX {
   from {
     transform: translateX(-2%);
@@ -709,30 +731,23 @@ h4 {
     transform: translateX(2%);
   }
 }
-
 /* =========================
    Products (mixed lead + items)
 ========================= */
-
 .products {
   position: relative;
-  background: #fff;
-  padding: clamp(48px, 6vw, 96px) 0;
+  padding: clamp(0, 6vw, 96px) 0;
 }
-
 .products-grid {
   --gap: 18px;
   display: grid;
   gap: var(--gap);
-  align-items: stretch; /* grid item 同列高度一致（以最高者為準） */
+  align-items: stretch;
 }
-
-/* 卡片共用 */
 .product-item {
   min-width: 0;
   height: 100%;
 }
-
 .product-card {
   height: 100%;
   display: flex;
@@ -740,113 +755,118 @@ h4 {
   text-decoration: none;
   color: inherit;
 }
-
-/* 1) 固定圖片容器比例：避免圖像比例不同造成高度亂跳 */
 .product-media {
-  aspect-ratio: 4 / 3; /* 你也可以改 1/1 或 3/2，看設計稿 */
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 0; /* 若要圓角再加 */
-  background: #f2f2f2; /* 圖片載入前底色，避免白底閃爍 */
+  border-radius: 0;
+  background: #f2f2f2;
 }
-
-/* 2) 圖片等比例裁切填滿 */
 .product-media img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  /* 圖片本體：準備做動畫 */
   transition: transform 0.5s ease;
   will-change: transform;
 }
-
-/* 滑鼠移上卡片時，放大圖片 */
 .product-item:hover .product-media img {
   transform: scale(1.08);
 }
-
-/* 3) 讓標題一致貼齊底部（視覺更齊） */
 .product-name {
   margin: 10px;
-  min-height: 1.4em; /* 至少一行高度 */
-  font-size: 1rem;
+  min-height: 1.4em;
+  font-size: var(--p-size);
   line-height: 1.4;
   letter-spacing: 0.06em;
   color: #2f2f2f;
 }
-
-/* 文案那格：讓它跟商品卡視覺高度一致（可微調） */
 .product-lead {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-
-/* 文案（同樣是 product-item） */
 .product-lead .products-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: var(--h3-size);
+  font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.25;
   margin: 0 0 12px;
   color: #2f2f2f;
 }
-
 .product-lead .products-desc {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: var(--p-size);
+  line-height: var(--p-lh);
   letter-spacing: 0.06em;
   margin: 0;
   color: #2f2f2f;
 }
-
-/* MORE */
 .products-more {
   margin-top: 28px;
   display: flex;
   justify-content: center;
 }
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 180px;
+/* 不要覆蓋全站 .btn-cta，僅在 products 區塊做滿版 */
+.products .btn-cta {
+  min-width: 100%;
   height: 44px;
-  padding: 0 22px;
-  background: #dfa251;
-  color: #fff;
-  text-decoration: none;
+  border-radius: 2px;
   letter-spacing: 0.12em;
   font-weight: 600;
-  border-radius: 2px;
 }
-
-/* 手機：2 欄（文案也算一格，會跟著排） */
 @media (max-width: 991.98px) {
   .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  /* 文案想要滿版（比較合理），就打開這行；不要滿版就刪掉 */
   .product-lead {
     grid-column: 1 / -1;
+    text-align: center;
+  }
+  .products-title br {
+    display: none;
   }
 }
-
-/* 桌機：4 欄 => 第一排「文案 + 3 商品」，第二排自然變 4 商品 */
 @media (min-width: 992px) {
   .products-grid {
     --gap: 24px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: start;
   }
-
-  /* 文案佔 1 格即可（= 左上 1/4） */
-  .product-lead {
-    grid-column: auto;
+}
+/* Products：手機只顯示 6 個商品（保留 product-lead + 6 items）
+   註：你的 nth-child(n+8) 是正確的（第1個是 lead，第2~7=6個商品，第8開始隱藏）
+*/
+@media (max-width: 991.98px) {
+  .products-grid .product-item:nth-child(n + 8) {
+    display: none;
   }
 }
-
+/* =========================
+   Products fixes (Desktop/Laptop)
+   - 往下移 20px
+   - 桌機按鈕不滿版，手機才滿版
+========================= */
+/* 1) 桌機/筆電：整段 products 往下 20px */
+@media (min-width: 992px) {
+  .products {
+    padding-top: calc(clamp(0px, 6vw, 50px) + 10px);
+  }
+}
+/* 2) 按鈕寬度：桌機/筆電固定一個商品卡寬左右 */
+@media (min-width: 992px) {
+  .products .btn-cta {
+    min-width: 0;
+    width: clamp(260px, 22vw, 320px); /* 約一張商品圖卡 */
+  }
+  .products-more {
+    justify-content: center;
+  }
+}
+/* 3) 手機：維持滿版 */
+@media (max-width: 991.98px) {
+  .products .btn-cta {
+    width: 100%;
+  }
+}
 /* =========================
    Video
 ========================= */
@@ -855,11 +875,9 @@ h4 {
   padding: var(--sec-y-lg) 0;
   text-align: center;
 }
-
 .video-wrap {
   margin: 0 auto;
 }
-
 .video-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -872,31 +890,26 @@ h4 {
   border: 0;
   display: block;
 }
-
 @media (max-width: 767.98px) {
   .video {
     padding: 72px 0;
   }
 }
-
 /* =========================
    Highlights
 ========================= */
 .section--gold {
   background: var(--jf-bg);
 }
-
 .highlights {
   padding: var(--sec-y) 0;
 }
-
 .highlights__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
 }
-
 .highlight-card {
   background: #fff;
   border-radius: var(--radius);
@@ -906,7 +919,6 @@ h4 {
   flex-direction: column;
   min-height: 100%;
 }
-
 .highlight-card__media {
   margin: 0;
   width: 100%;
@@ -914,14 +926,12 @@ h4 {
   overflow: hidden;
   background: #eee;
 }
-
 .highlight-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 .highlight-card__body {
   display: flex;
   flex-direction: column;
@@ -929,7 +939,6 @@ h4 {
   gap: 10px;
   flex: 1 1 auto;
 }
-
 .card-title {
   margin: 0;
   font-size: 20px;
@@ -937,22 +946,17 @@ h4 {
   color: var(--ink);
   font-weight: 800;
 }
-
 .highlight-card__actions {
   margin-top: auto;
   padding-top: 10px;
 }
-
-/* Fix: Highlights 卡片在 section--dark 內，段落會被染白 -> 覆寫回深色文字 */
 .highlights .highlight-card p {
   color: var(--ink);
 }
-
 .highlights .highlight-card .card-title {
   color: var(--ink);
 }
-
-/* Buttons（你這份專案自訂 btn，不用 Bootstrap btn） */
+/* project btn */
 .btn {
   appearance: none;
   display: inline-flex;
@@ -971,7 +975,6 @@ h4 {
   text-decoration: none;
   user-select: none;
 }
-
 .btn--primary {
   border-color: #1a1a1a;
   cursor: pointer;
@@ -979,31 +982,24 @@ h4 {
 .btn--primary:hover {
   filter: brightness(0.96);
 }
-
 .btn--disabled {
   border-color: #838383;
   color: rgba(0, 0, 0, 0.35);
   background: rgba(255, 255, 255, 0.6);
   cursor: not-allowed;
 }
-
-/* =========================
-   Highlights button hover -> Gold
-========================= */
 .highlights .btn--primary {
   background: #fff;
   border-color: #1a1a1a;
   color: #1a1a1a;
 }
-
 .highlights .btn--primary:hover,
 .highlights .btn--primary:focus-visible {
   background: var(--gold);
   border-color: var(--gold);
   color: #fff;
-  filter: none; /* 避免你原本的 brightness 影響色準 */
+  filter: none;
 }
-
 @media (max-width: 900px) {
   .highlights {
     padding: 56px 16px;
@@ -1014,7 +1010,6 @@ h4 {
     padding: 12px;
   }
 }
-
 /* =========================
    EVENT / 主題活動
 ========================= */
@@ -1022,7 +1017,6 @@ h4 {
   background: #fff;
   padding: var(--sec-y-top) 0 var(--sec-y-bottom);
 }
-
 .event__grid {
   --gap: 22px;
   display: grid;
@@ -1030,7 +1024,6 @@ h4 {
   gap: var(--gap);
   align-items: start;
 }
-
 .event-card {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -1040,14 +1033,12 @@ h4 {
   transform: translateY(var(--mt, 0));
   cursor: pointer;
 }
-
 .event-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 .event-card::after {
   content: "";
   position: absolute;
@@ -1057,7 +1048,6 @@ h4 {
   transition: opacity 0.25s ease;
   opacity: 1;
 }
-
 .event-card__label {
   position: absolute;
   inset: 0;
@@ -1074,13 +1064,10 @@ h4 {
   text-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
   pointer-events: none;
 }
-
 .event-card:hover::after,
 .event-card:focus-visible::after {
   opacity: 0.65;
 }
-
-/* Scroll reveal for event */
 .js-reveal {
   opacity: 0;
   transform: translateY(calc(var(--mt, 0px) + 18px));
@@ -1092,7 +1079,6 @@ h4 {
   opacity: 1;
   transform: translateY(var(--mt, 0));
 }
-
 .js-reveal[data-i="0"] {
   transition-delay: 0ms;
 }
@@ -1111,26 +1097,21 @@ h4 {
 .js-reveal[data-i="5"] {
   transition-delay: 400ms;
 }
-
 @media (max-width: 900px) {
   .event {
     padding: 64px 16px 72px;
   }
-
   .event__grid {
     --gap: 12px;
     grid-template-columns: repeat(2, 1fr);
   }
-
   .event-card {
     aspect-ratio: 1 / 1;
     transform: none;
   }
-
   .event-card__label {
     font-size: 24px;
   }
-
   .js-reveal {
     transform: translateY(18px);
   }
@@ -1138,9 +1119,8 @@ h4 {
     transform: translateY(0);
   }
 }
-
 /* =========================
-   EXPO MAP / 展區地圖（含格紋滿版 + soft-light）
+   EXPO MAP / 展區地圖
 ========================= */
 .expo-map {
   position: relative;
@@ -1148,7 +1128,6 @@ h4 {
   background-color: #f3f3f3;
   overflow: hidden;
 }
-
 .expo-map::before {
   content: "";
   position: absolute;
@@ -1157,40 +1136,39 @@ h4 {
   background-repeat: repeat;
   background-size: auto;
   mix-blend-mode: soft-light;
-  opacity: 1; /* 可依視覺微調 */
+  opacity: 1;
   pointer-events: none;
 }
-
 .expo-map > .container {
   position: relative;
-  z-index: 1; /* 確保內容在格紋上面 */
+  z-index: 1;
 }
-
+.expo-map .section-head {
+  margin-bottom: clamp(30px, 3vw, 40px);
+}
 .expo-map__item {
-  margin-top: 28px;
+  margin: 0;
 }
-
-/* 標題列：水平置中 + 對齊 */
+.expo-map__item + .expo-map__item {
+  margin-top: clamp(42px, 5vw, 60px);
+}
 .expo-map__bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: clamp(20px, 3vw, 24px);
 }
-
-/* 中文 H3（避免吃到全站英文 h3） */
 .expo-map__title {
   margin: 0;
   font-family: var(--font-zh);
-  font-size: 28px; /* 依設計可微調 */
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.15;
   color: var(--ink);
+  display: flex;
+  align-items: center;
 }
-
-/* MAP 膠囊按鈕 */
 .expo-map__btn {
   display: inline-flex;
   align-items: center;
@@ -1200,45 +1178,50 @@ h4 {
   background: var(--gold);
   color: #fff;
   text-decoration: none;
-
   font-family: var(--font-en);
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1;
 }
-
 .expo-map__btn:hover {
   filter: brightness(0.96);
 }
-
-/* Bootstrap icon：與文字同高 */
 .expo-map__btn i {
   font-size: 1em;
   line-height: 1;
   letter-spacing: 0;
 }
-
-/* 圖框 */
 .expo-map__figure {
   margin: 0;
+  padding: 0;
   background: #e6e6e6;
   overflow: hidden;
+  border: 1px solid #c7c7c7;
 }
-
 .expo-map__figure img {
   width: 100%;
   height: auto;
   display: block;
 }
-
+@media (max-width: 991.98px) {
+  .expo-map .section-head {
+    margin-bottom: 24px;
+  }
+  .expo-map__item + .expo-map__item {
+    margin-top: 28px;
+  }
+  .expo-map__bar {
+    margin-bottom: 12px;
+  }
+}
 /* =========================
-   TRAFFIC / 交通指引
+   TRAFFIC / 交通指引（完整、可替換版）
 ========================= */
 .traffic {
-  background: #2b2b2b;
+  background: #fff;
 }
-
+/* Left Visual */
 .traffic-visual {
   position: relative;
   width: 100%;
@@ -1247,7 +1230,6 @@ h4 {
   overflow: hidden;
   background: #111;
 }
-
 .traffic-visual__bg {
   position: absolute;
   inset: 0;
@@ -1256,14 +1238,12 @@ h4 {
   object-fit: cover;
   display: block;
 }
-
 .traffic-visual__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-
 .traffic-visual__map {
   position: absolute;
   inset: 0;
@@ -1275,28 +1255,41 @@ h4 {
   z-index: 2;
   pointer-events: none;
 }
-
+/* Right Panel */
 .traffic-panel {
   min-height: 640px;
   background: #fff;
-  padding: var(--sec-y) 56px;
   display: flex;
   flex-direction: column;
+  max-width: clamp(600px, 42vw, 820px);
+  margin-left: 0;
+  margin-right: auto;
+  padding: var(--sec-y) 0;
+  padding-inline: clamp(18px, 3vw, 56px);
 }
-
+@media (min-width: 992px) {
+  .traffic .col-lg-6:last-child {
+    padding-left: clamp(24px, 4vw, 72px);
+  }
+}
+.traffic .traffic-panel .section-head {
+  text-align: left;
+  margin-bottom: 0;
+}
 .traffic-lead {
   margin: 18px 0 22px;
-  line-height: 1.95;
   color: rgba(47, 47, 47, 0.8);
 }
-
+.traffic-block {
+  margin: 0;
+}
 .traffic-block__top {
-  display: flex;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  column-gap: 22px;
   align-items: center;
-  gap: 14px;
   margin-bottom: 12px;
 }
-
 .traffic-pill {
   display: inline-flex;
   align-items: center;
@@ -1306,25 +1299,24 @@ h4 {
   border-radius: 999px;
   background: #7f3a2d;
   color: #fff;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0.06em;
   white-space: nowrap;
+  justify-self: center;
 }
-
 .traffic-block__caption {
-  font-size: 20px;
-  font-weight: 800;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
   color: rgba(47, 47, 47, 0.9);
 }
-
 .traffic-block__body {
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 22px;
   align-items: start;
 }
-
 .traffic-metric {
   display: grid;
   justify-items: center;
@@ -1332,13 +1324,11 @@ h4 {
   gap: 10px;
   padding-top: 6px;
 }
-
 .traffic-metric__icon {
   width: 78px;
   height: 78px;
   display: block;
 }
-
 .traffic-metric__num {
   font-size: 56px;
   font-weight: 900;
@@ -1346,7 +1336,6 @@ h4 {
   line-height: 1;
   letter-spacing: 0.02em;
 }
-
 .traffic-metric__unit {
   margin-top: -6px;
   font-size: 14px;
@@ -1354,93 +1343,121 @@ h4 {
   color: rgba(47, 47, 47, 0.7);
   letter-spacing: 0.06em;
 }
-
 .traffic-block__text {
   margin: 0;
-  font-size: 18px;
-  line-height: 2;
   color: rgba(47, 47, 47, 0.8);
 }
-
 .traffic-sep {
   border: 0;
   height: 1px;
   background: rgba(201, 154, 88, 0.55);
   margin: 24px 0;
 }
-
+.traffic-more {
+  margin-top: 22px;
+}
 @media (max-width: 991.98px) {
   .traffic-visual {
     min-height: 420px;
   }
-
   .traffic-panel {
     min-height: auto;
-    padding: 28px 18px 22px;
+    max-width: 760px;
+    width: 90%;
+    margin-inline: auto;
+    padding: 50px 0 40px;
+    padding-inline: 18px;
   }
-
+  /* 只有標題置中 */
+  .traffic .traffic-panel .section-head {
+    text-align: center;
+  }
+  /* 其餘內容靠左 */
   .traffic-lead {
-    font-size: 18px;
     margin: 18px 0 18px;
+    text-align: left;
   }
-
   .traffic-block__top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    justify-items: start;
+    text-align: left;
     margin-bottom: 14px;
   }
-
-  .traffic-block__caption {
-    font-size: 22px;
-    font-weight: 900;
+  .traffic-pill {
+    justify-self: start;
   }
-
+  .traffic-block__caption {
+    font-size: var(--p-size);
+    line-height: var(--p-lh);
+    font-weight: 500;
+  }
   .traffic-block__body {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-
+  /* icon + 時間：水平排列 */
+  .traffic-metric {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-top: 0;
+  }
   .traffic-metric__icon {
-    width: 92px;
-    height: 92px;
+    width: 56px;
+    height: 56px;
   }
   .traffic-metric__num {
-    font-size: 72px;
+    font-size: 48px;
   }
   .traffic-metric__unit {
-    font-size: 16px;
+    margin-top: 0;
+    align-self: flex-end;
   }
-
   .traffic-block__text {
-    font-size: 20px;
-    line-height: 1.95;
+    text-align: left;
   }
   .traffic-sep {
     margin: 22px 0;
   }
 }
-
 /* =========================
-   Footer (replace all footer styles)
+   TRAFFIC CTA size correction
+========================= */
+/* 桌機 / 筆電：跟商品 MORE 一樣 */
+@media (min-width: 992px) {
+  .traffic-more {
+    height: 44px; /* 與商品一致 */
+    width: clamp(260px, 22vw, 320px);
+    margin-left: 0; /* ← 改為靠左 */
+    margin-right: auto;
+  }
+}
+/* 手機：維持滿版 + 較高 */
+@media (max-width: 991.98px) {
+  .traffic-more {
+    width: 100%;
+    height: 56px;
+  }
+}
+/* =========================
+   Footer
 ========================= */
 .site-footer {
   background: #2f2f2f;
   padding: var(--sec-y) 0;
 }
-
 .site-footer .footer-wrap {
-  max-width: 560px; /* 版心收斂：貼近設計稿紅框感 */
+  max-width: 560px;
   margin: 0 auto;
 }
-
 .footer-mark {
   width: 66px;
   height: auto;
   display: block;
   margin: 0 auto 18px;
 }
-
 .footer-block {
   margin: 0;
 }
@@ -1450,49 +1467,42 @@ h4 {
 .footer-block--info {
   margin-bottom: 22px;
 }
-
 .footer-title {
-  font-size: 1.375rem; /* 22px */
+  font-size: 1.375rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #f8f8f8;
   margin: 0;
 }
-
 .footer-en {
   margin-top: 8px;
   font-family: var(--font-en);
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
   letter-spacing: 0.18em;
   color: #f8f8f8;
   opacity: 0.95;
 }
-
 .footer-org {
   margin-top: 18px;
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   font-weight: 700;
   color: #f8f8f8;
 }
-
 .footer-line {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   line-height: 2.05;
   letter-spacing: 0.08em;
   color: #d9d9d9;
 }
-
 .footer-line--mt {
   margin-top: 18px;
 }
-
 .footer-social {
   display: flex;
   justify-content: center;
   gap: 14px;
   margin: 18px 0 24px;
 }
-
 .footer-btn {
   display: inline-flex;
   align-items: center;
@@ -1507,44 +1517,41 @@ h4 {
   font-size: 0.875rem;
   letter-spacing: 0.06em;
 }
-
 .footer-btn i {
   font-size: 1.05rem;
   line-height: 1;
 }
-
 .footer-btn--fb {
   background: #3b5998;
 }
 .footer-btn--yt {
   background: #e62117;
 }
-
 .footer-btn:hover {
   filter: brightness(0.95);
 }
-
 .footer-bottom {
   margin-top: 6px;
 }
-
 .footer-copy {
   font-family: var(--font-en);
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   letter-spacing: 0.06em;
   color: #f8f8f8;
   opacity: 0.9;
 }
-
 .footer-design {
   margin-top: 10px;
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   letter-spacing: 0.06em;
-  color: #838383; /* 你指定 */
+  color: #838383;
 }
-
-/* Mobile */
 @media (max-width: 575.98px) {
+  .footer-en {
+    margin-top: 0px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
   .site-footer {
     padding: 56px 0 36px;
   }
@@ -1552,7 +1559,7 @@ h4 {
     max-width: 320px;
   }
   .footer-title {
-    font-size: 1.25rem;
+    font-size: 1.23rem;
   }
   .footer-line {
     font-size: 0.95rem;
@@ -1569,7 +1576,6 @@ h4 {
     padding: 0 14px;
   }
 }
-
 /* =========================
    Back to Top
 ========================= */
@@ -1593,12 +1599,10 @@ h4 {
     opacity 0.2s ease,
     transform 0.2s ease;
 }
-
 .to-top.is-show {
   opacity: 1;
   transform: translateY(0);
 }
-
 /* RWD: section spacing scale-down */
 @media (max-width: 991.98px) {
   :root {
@@ -1607,11 +1611,69 @@ h4 {
     --sec-y-sm: 56px;
   }
 }
-
 @media (max-width: 575.98px) {
   :root {
     --sec-y: 56px;
     --sec-y-lg: 64px;
     --sec-y-sm: 44px;
+  }
+}
+/* =========================
+   Global Mobile Reading Width (一致更窄)
+   - 讓全站手機版 container 變窄、左右一致
+========================= */
+@media (max-width: 991.98px) {
+  /* 你要「再窄一點」：調這兩個就好 */
+  :root {
+    --m-read-max: 560px; /* 內容最大閱讀寬度（你想更窄可改 520px） */
+    --m-side-pad: 28px; /* 左右內距（你想更窄可改 32px，數字越大內容越窄） */
+  }
+  /* 所有 container 統一規則 */
+  .container {
+    max-width: var(--m-read-max) !important;
+    padding-left: var(--m-side-pad) !important;
+    padding-right: var(--m-side-pad) !important;
+  }
+  /* container-fluid 本質是滿版，但我們也統一內距，
+     讓它的內容看起來不要忽寬忽窄 */
+  .container-fluid {
+    padding-left: var(--m-side-pad) !important;
+    padding-right: var(--m-side-pad) !important;
+  }
+  /* row 的左右 gutter 也一起收斂，避免某些區塊又變寬 */
+  .row {
+    --bs-gutter-x: 1rem;
+  }
+}
+/* =========================
+   Traffic: 保持左圖滿版（不吃全站 mobile 內縮）
+========================= */
+@media (max-width: 991.98px) {
+  /* 交通指引整個滿版容器不要內縮 */
+  .traffic .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  /* 交通指引 row 也不要被全站 gutter 影響 */
+  .traffic .row {
+    --bs-gutter-x: 0;
+  }
+  /* 左圖本來就滿版，這裡再保險一次 */
+  .traffic-visual {
+    width: 100%;
+  }
+  /* 右側文字 panel 才套用閱讀寬度（你原本就有）
+     如果你要更一致，可明確鎖住： */
+  .traffic-panel {
+    max-width: var(--m-read-max); /* 跟全站同一個閱讀寬度 token */
+    margin-inline: auto; /* 手機置中 */
+    padding-left: var(--m-side-pad);
+    padding-right: var(--m-side-pad);
+  }
+}
+@media (max-width: 991.98px) {
+  .traffic-more {
+    width: 100%;
+    height: 44px;
   }
 }

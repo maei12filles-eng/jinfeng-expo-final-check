@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <defs>
+    <clipPath id="b">
+      <rect width="1920" height="1080" fill="none"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#b)">
+    <g>
+      <polygon points="0 3.03 0 841.37 960 4877.4 1920 4877.4 1920 3114.73 0 3.03" fill="#595757"/>
+      <polygon points="230.27 0 1920 1714.38 1920 829.73 470.27 .12 230.27 0" fill="#595757"/>
+      <polygon points="833.21 2.04 1920 188.34 1920 3.03 833.21 2.04" fill="#595757"/>
+    </g>
+  </g>
+</svg>

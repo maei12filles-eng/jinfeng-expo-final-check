@@ -1,29 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276.86" height="303.756" viewBox="0 0 276.86 303.756">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" width="209.82" height="244.23" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 209.82 244.23">
   <defs>
-    <clipPath id="clip-path">
-      <rect id="Rectangle_54" data-name="Rectangle 54" width="121.992" height="134.195" fill="#d9d4c7"/>
+    <clipPath id="e">
+      <rect x="47.91" y="15.6" width="121.99" height="134.2" fill="none"/>
     </clipPath>
-    <clipPath id="clip-path-2">
-      <rect id="Rectangle_54-2" data-name="Rectangle 54" width="121.992" height="134.195" fill="#dfa251"/>
+    <clipPath id="p">
+      <rect x="47.9" y="15.6" width="121.99" height="134.2" fill="none"/>
     </clipPath>
   </defs>
-  <g id="ci-badge-03" transform="translate(-538.723 -3036.859)">
-    <ellipse id="Ellipse_4" data-name="Ellipse 4" cx="102" cy="124.5" rx="102" ry="124.5" transform="translate(623.886 3036.859) rotate(20)" fill="#fff"/>
-    <g id="Group_16" data-name="Group 16" transform="translate(620.153 3082.222)" opacity="0.26">
-      <g id="Group_14" data-name="Group 14" clip-path="url(#clip-path)">
-        <path id="Path_76" data-name="Path 76" d="M44.132,0H78.806s-15.4,7.544-2.15,19.05c7.658,6.652,20.25,15.874,45.337,23.9L112.244,55.28S77.779,44.672,61.252,23.026c0,0-15.876,21.933-51.141,32.254L0,42.952s28.914-7.1,46.545-24.3c0,0,12.228-10.537-2.413-18.655" fill="#d9d4c7"/>
-        <path id="Path_77" data-name="Path 77" d="M131,120.8H66.733a3.5,3.5,0,0,1-3.495-3.495v-9.632H134.5v9.632A3.494,3.494,0,0,1,131,120.8" transform="translate(-37.805 -64.37)" fill="#d9d4c7"/>
-        <path id="Path_78" data-name="Path 78" d="M123.944,177.007H46.089A1.848,1.848,0,0,1,44.4,175.9l-4.028-9.262a1.847,1.847,0,0,1,1.694-2.584h85.91a1.847,1.847,0,0,1,1.694,2.584l-4.028,9.262a1.847,1.847,0,0,1-1.694,1.11" transform="translate(-24.04 -98.073)" fill="#d9d4c7"/>
-        <path id="Path_79" data-name="Path 79" d="M114.7,187.615s-6.021,7.168-23.8,6.9A20.746,20.746,0,0,1,74.616,186.7a25.082,25.082,0,0,1-5.606-15.981V140.313H57.568v30.408A25.084,25.084,0,0,1,51.962,186.7a20.748,20.748,0,0,1-16.287,7.816c-17.776.265-23.8-6.9-23.8-6.9l-8.314,25.23s8.171-3.441,16.2-3.441,26.06,3.236,43.525-17.283C80.754,212.64,98.8,209.4,106.814,209.4s16.2,3.441,16.2,3.441Z" transform="translate(-2.131 -83.882)" fill="#d9d4c7"/>
-        <path id="Path_80" data-name="Path 80" d="M194.093,226.927l13.595-22.334h-14.73a2.428,2.428,0,0,0-2.24,1.49l-5.777,13.8A2.428,2.428,0,0,0,186.108,223Z" transform="translate(-110.448 -122.31)" fill="#d9d4c7"/>
-        <path id="Path_81" data-name="Path 81" d="M76.833,226.927,63.238,204.593H77.969a2.427,2.427,0,0,1,2.239,1.49l5.777,13.8A2.428,2.428,0,0,1,84.817,223Z" transform="translate(-37.805 -122.31)" fill="#d9d4c7"/>
-        <path id="Path_82" data-name="Path 82" d="M149.288,302.631a7.813,7.813,0,1,1-7.813-7.813,7.813,7.813,0,0,1,7.813,7.813" transform="translate(-79.906 -176.248)" fill="#d9d4c7"/>
+  <g id="b" data-name="ci-badge-03">
+    <ellipse id="c" data-name="Ellipse 4" cx="104.91" cy="122.11" rx="124.5" ry="102" transform="translate(-45.72 178.93) rotate(-70)" fill="#fff"/>
+    <g id="d" data-name="Group 16" opacity=".26">
+      <g clip-path="url(#e)">
+        <g id="f" data-name="Group 14">
+          <path id="g" data-name="Path 76" d="M92.04,15.6h34.67s-15.4,7.54-2.15,19.05c7.66,6.65,20.25,15.87,45.34,23.9l-9.75,12.33s-34.47-10.61-50.99-32.25c0,0-15.88,21.93-51.14,32.25l-10.11-12.33s28.91-7.1,46.54-24.3c0,0,12.23-10.54-2.41-18.66" fill="#d9d4c7"/>
+          <path id="h" data-name="Path 77" d="M141.1,72.03h-64.27c-1.93,0-3.49-1.57-3.49-3.5v-9.63h71.26v9.63c0,1.93-1.56,3.49-3.49,3.5,0,0,0,0,0,0" fill="#d9d4c7"/>
+          <path id="i" data-name="Path 78" d="M147.81,94.53h-77.85c-.73,0-1.4-.44-1.69-1.11l-4.03-9.26c-.41-.94.02-2.02.96-2.43.23-.1.48-.15.74-.15h85.91c1.02,0,1.85.83,1.85,1.85,0,.25-.05.5-.15.74l-4.03,9.26c-.29.67-.96,1.11-1.69,1.11" fill="#d9d4c7"/>
+          <path id="j" data-name="Path 79" d="M160.48,119.33s-6.02,7.17-23.8,6.9c-6.34.02-12.33-2.86-16.28-7.82-3.66-4.52-5.65-10.17-5.61-15.98v-30.41h-11.44v30.41c.04,5.82-1.94,11.46-5.61,15.98-3.95,4.96-9.95,7.83-16.29,7.82-17.78.26-23.8-6.9-23.8-6.9l-8.31,25.23s8.17-3.44,16.2-3.44,26.06,3.24,43.53-17.28c17.47,20.52,35.51,17.28,43.53,17.28s16.2,3.44,16.2,3.44l-8.31-25.23Z" fill="#d9d4c7"/>
+          <path id="k" data-name="Path 80" d="M131.55,120.22l13.6-22.33h-14.73c-.98,0-1.86.59-2.24,1.49l-5.78,13.8c-.5,1.18.02,2.55,1.17,3.12l7.99,3.93Z" fill="#d9d4c7"/>
+          <path id="l" data-name="Path 81" d="M86.94,120.22l-13.6-22.33h14.73c.98,0,1.86.59,2.24,1.49l5.78,13.8c.5,1.18-.02,2.55-1.17,3.12l-7.98,3.93Z" fill="#d9d4c7"/>
+          <path id="m" data-name="Path 82" d="M117.29,141.98c0,4.32-3.5,7.81-7.81,7.81s-7.81-3.5-7.81-7.81c0-4.32,3.5-7.81,7.81-7.81h0c4.32,0,7.81,3.5,7.81,7.81" fill="#d9d4c7"/>
+        </g>
       </g>
     </g>
-    <text id="山峰巔頂" transform="translate(681.153 3255.98)" fill="#3a3a38" font-size="22" font-family="NotoSansCJKtc-Medium, Noto Sans CJK TC" font-weight="500" letter-spacing="0.05em"><tspan x="-45.65" y="0">山峰巔頂</tspan></text>
-    <text id="象徵文化與生活的起點" transform="translate(681.153 3283.98)" fill="#838383" font-size="18" font-family="NotoSansCJKtc-Regular, Noto Sans CJK TC" letter-spacing="0.05em"><tspan x="-94.05" y="0">象徵文化與生活的起點</tspan></text>
-    <g id="Group_14-2" data-name="Group 14" transform="translate(620.149 3082.222)" clip-path="url(#clip-path-2)">
-      <path id="Path_82-2" data-name="Path 82" d="M149.288,302.631a7.813,7.813,0,1,1-7.813-7.813,7.813,7.813,0,0,1,7.813,7.813" transform="translate(-79.906 -176.248)" fill="#dfa251"/>
+    <g id="n" data-name="山峰巔頂" isolation="isolate">
+      <text transform="translate(63.26 189.36)" fill="#3a3a38" font-family="NotoSansCJKtc-Medium-B5pc-H, &apos;Noto Sans CJK TC&apos;" font-size="22" font-weight="500" isolation="isolate" letter-spacing=".05em"><tspan x="0" y="0">山峰巔頂</tspan></text>
+    </g>
+    <g id="o" data-name="象徵文化與生活的起點" isolation="isolate">
+      <text transform="translate(14.86 217.36)" fill="#838383" font-family="NotoSansCJKtc-Regular-B5pc-H, &apos;Noto Sans CJK TC&apos;" font-size="18" isolation="isolate" letter-spacing=".05em"><tspan x="0" y="0">象徵文化與生活的起點</tspan></text>
+    </g>
+    <g clip-path="url(#p)">
+      <g id="q" data-name="Group 14-2">
+        <path id="r" data-name="Path 82-2" d="M117.29,141.98c0,4.32-3.5,7.81-7.81,7.81s-7.81-3.5-7.81-7.81c0-4.32,3.5-7.81,7.81-7.81h0c4.32,0,7.81,3.5,7.81,7.81" fill="#dfa251"/>
+      </g>
     </g>
   </g>
 </svg>

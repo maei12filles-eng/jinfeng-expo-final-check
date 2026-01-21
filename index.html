@@ -61,11 +61,12 @@
       <section class="hero position-relative overflow-hidden">
         <div class="hero-bg hero-bg-base" aria-hidden="true"></div>
         <div class="hero-bg hero-bg-mask" aria-hidden="true"></div>
+        <!-- 首屏主視覺：不建議 lazy（避免 LCP 變慢） -->
         <img class="hero-goldword" src="./assets/word-gold.svg" alt="" aria-hidden="true" />
 
         <div class="container">
           <div class="row align-items-center hero-min">
-            <div class="col-12 col-lg-8 offset-lg-1">
+            <div class="col-12 col-lg-8 offset-lg-1 offset-xl-0">
               <div class="hero-text">
                 <p class="hero-kicker mb-2">lindavan nua qadaw</p>
 
@@ -93,7 +94,11 @@
             2026金峰鄉原生藝術國際博覽會，是一場從土地出發、以文化為語言，向世界分享金峰鄉生活智慧與治理經驗的行動平台。透過原生藝術的多元呈現，展現金峰鄉在永續發展、原住民文化傳承與地方治理上的實踐成果，讓文化不只是被看見，更能被理解與延續。
           </p>
 
-          <p class="process-text reveal-item">這是一段從金峰出發走向未來永續的旅程</p>
+          <h3 class="process-text reveal-item">
+            這是一段從
+            <span>金峰出發走向未來永續</span>
+            的旅程
+          </h3>
 
           <p class="process-text reveal-item">
             這是我們想走向的未來，不只是一場展覽，更是一個面向未來的起點。金峰鄉希望用原住民族的智慧，與土地共好、與世界對話，穩穩地走出一條永續、溫暖、屬於我們自己的道路，成為原住民永續治理的實踐典範。
@@ -104,31 +109,42 @@
       <!-- CI 設計介紹 -->
       <section class="ci" id="ci">
         <div class="container">
-          <div class="row gy-5 align-items-start justify-content-center">
-            <div class="col-12 col-lg-5">
-              <div class="ci-orbits">
-                <img class="ci-mark" src="./assets/ci/ci-mark.svg" alt="金 CI" />
-                <div class="ci-badges" aria-hidden="true">
-                  <img class="ci-badge b1" src="./assets/ci/ci-badge-01.svg" alt="" />
-                  <img class="ci-badge b2" src="./assets/ci/ci-badge-02.svg" alt="" />
-                  <img class="ci-badge b3" src="./assets/ci/ci-badge-03.svg" alt="" />
-                  <img class="ci-badge b4" src="./assets/ci/ci-badge-04.svg" alt="" />
+          <div class="ci-inner">
+            <!-- 手機版：標題置頂置中（只顯示在 <lg） -->
+            <header class="section-head section-head--center d-lg-none ci-head-mobile">
+              <h2>視覺識別系統</h2>
+              <h4>VISUAL IDENTITY</h4>
+            </header>
+
+            <div class="row gy-5 align-items-start justify-content-center">
+              <div class="col-12 col-lg-5">
+                <div class="ci-orbits">
+                  <img class="ci-mark" src="./assets/ci/ci-mark.svg" alt="金 CI" loading="lazy" decoding="async" />
+                  <div class="ci-badges" aria-hidden="true">
+                    <img class="ci-badge b1" src="./assets/ci/ci-badge-01.svg" alt="" loading="lazy" decoding="async" />
+                    <img class="ci-badge b2" src="./assets/ci/ci-badge-02.svg" alt="" loading="lazy" decoding="async" />
+                    <img class="ci-badge b3" src="./assets/ci/ci-badge-03.svg" alt="" loading="lazy" decoding="async" />
+                    <img class="ci-badge b4" src="./assets/ci/ci-badge-04.svg" alt="" loading="lazy" decoding="async" />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-12 col-lg-6 offset-lg-1">
-              <div class="ci-content">
-                <h2>視覺識別系統</h2>
-                <h4>VISUAL IDENTITY</h4>
+              <div class="col-12 col-lg-6 offset-lg-1">
+                <div class="ci-content">
+                  <!-- 桌機版：標題留在右欄置左（>=lg 才顯示） -->
+                  <div class="d-none d-lg-block">
+                    <h2>視覺識別系統</h2>
+                    <h4>VISUAL IDENTITY</h4>
+                  </div>
 
-                <h3>CI設計介紹</h3>
+                  <h3>CI設計介紹</h3>
 
-                <p>金峰，位於臺灣東南隅，宛如從島嶼深處綻放的一束光，從這片土地出發，跨足世界。 這裡是臺灣大地藝術的起點，承載了自然、人文與族群的力量。</p>
+                  <p>金峰，位於臺灣東南隅，宛如從島嶼深處綻放的一束光，從這片土地出發，跨足世界。 這裡是臺灣大地藝術的起點，承載了自然、人文與族群的力量。</p>
 
-                <p>「金」字，象徵天、地、人和海在此交會，孕育出豐饒的生命與多元的文化樣貌。</p>
+                  <p>「金」字，象徵天、地、人和海在此交會，孕育出豐饒的生命與多元的文化樣貌。</p>
 
-                <p>字底的圓點，如同山峰之巔，意味著突破、巔峰與遠望，展現金峰鄉向外延伸、 連結世界的決心。</p>
+                  <p>字底的圓點，如同山峰之巔，意味著突破、巔峰與遠望，展現金峰鄉向外延伸、 連結世界的決心。</p>
+                </div>
               </div>
             </div>
           </div>
@@ -239,10 +255,14 @@
           <div class="video-wrap reveal-item">
             <div class="video-frame" role="region" aria-label="形象影片播放器">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/rXWBGyTCMKA"
-                title="2026 金峰鄉原生藝術國際博覽會 形象影片"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/rXWBGyTCMKA"
+                title="金峰鄉原生藝術國際博覽會 形象影片"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
             </div>
@@ -293,7 +313,7 @@
                 <h4 class="card-title">主題館展覽</h4>
                 <p class="clamp-3">走進工藝構築的感性空間，深度探索金峰的靈魂符碼。讓原生文化在沉浸體驗中…</p>
                 <div class="highlight-card__actions">
-                  <a class="btn btn--primary" href="https://ijinfong.com/" target="_blank" rel="noopener">MORE</a>
+                  <a class="btn btn--primary" href="https://ijinfong.com/currExhibitionList" target="_blank" rel="noopener">MORE</a>
                 </div>
               </div>
             </article>
@@ -311,27 +331,27 @@
 
           <div class="event__grid">
             <a class="event-card js-reveal" data-i="0" style="--mt: 40px" href="#" target="_blank" rel="noopener noreferrer" aria-label="紅藜季">
-              <img src="./assets/event/e01.jpg" alt="紅藜季" />
+              <img src="./assets/event/e01.jpg" alt="紅藜季" loading="lazy" decoding="async" />
               <span class="event-card__label">紅藜季</span>
             </a>
             <a class="event-card js-reveal" data-i="1" style="--mt: 80px" href="#" target="_blank" rel="noopener noreferrer" aria-label="小米季">
-              <img src="./assets/event/e02.jpg" alt="小米季" />
+              <img src="./assets/event/e02.jpg" alt="小米季" loading="lazy" decoding="async" />
               <span class="event-card__label">小米季</span>
             </a>
             <a class="event-card js-reveal" data-i="2" style="--mt: 40px" href="#" target="_blank" rel="noopener noreferrer" aria-label="洛神花季">
-              <img src="./assets/event/e03.jpg" alt="洛神花季" />
+              <img src="./assets/event/e03.jpg" alt="洛神花季" loading="lazy" decoding="async" />
               <span class="event-card__label">洛神花季</span>
             </a>
             <a class="event-card js-reveal" data-i="3" style="--mt: 40px" href="#" target="_blank" rel="noopener noreferrer" aria-label="金峰怎麼玩">
-              <img src="./assets/event/e04.jpg" alt="金峰怎麼玩" />
+              <img src="./assets/event/e04.jpg" alt="金峰怎麼玩" loading="lazy" decoding="async" />
               <span class="event-card__label">金峰怎麼玩</span>
             </a>
             <a class="event-card js-reveal" data-i="4" style="--mt: 80px" href="#" target="_blank" rel="noopener noreferrer" aria-label="部落收穫祭">
-              <img src="./assets/event/e05.jpg" alt="部落收穫祭" />
+              <img src="./assets/event/e05.jpg" alt="部落收穫祭" loading="lazy" decoding="async" />
               <span class="event-card__label">部落收穫祭</span>
             </a>
             <a class="event-card js-reveal" data-i="5" style="--mt: 40px" href="#" target="_blank" rel="noopener noreferrer" aria-label="金峰辦桌及百人藜粽">
-              <img src="./assets/event/e06.jpg" alt="金峰辦桌及百人藜粽" />
+              <img src="./assets/event/e06.jpg" alt="金峰辦桌及百人藜粽" loading="lazy" decoding="async" />
               <span class="event-card__label">
                 金峰辦桌及
                 <br />
@@ -416,7 +436,7 @@
                   <h4>HOW TO VISIT</h4>
                 </header>
 
-                <p class="traffic-lead">金峰鄉位於台東縣南迴區，由於金峰鄉地方廣闊建議搭乘火車或自行開車前往。</p>
+                <p class="traffic-lead">金峰鄉位於台東縣南迴區，由於金峰鄉地方廣闊，建議搭乘火車或自行開車前往。</p>
 
                 <section class="traffic-block">
                   <div class="traffic-block__top">
@@ -467,7 +487,7 @@
       <footer class="site-footer" id="contact">
         <div class="container">
           <div class="footer-wrap text-center">
-            <img class="footer-mark" src="./assets/footer/mark-gold.svg" alt="" aria-hidden="true" />
+            <img class="footer-mark" src="./assets/footer/mark-gold.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
 
             <div class="footer-block footer-block--top">
               <div class="footer-title">臺東縣金峰鄉原生藝術國際博覽會</div>
